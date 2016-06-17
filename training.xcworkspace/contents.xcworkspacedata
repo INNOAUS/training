@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"
+      name = "Common Projects">
+      <FileRef
+         location = "group:../innobase/xcode/cryptotest/cryptotest.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../innobase/xcode/libtest/libtest.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../innobase/xcode/libinnoaus/libinnoaus.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../innobase/xcode/obdob/obdob.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
