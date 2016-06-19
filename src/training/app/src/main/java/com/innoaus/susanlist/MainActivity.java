@@ -18,11 +18,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ListView listMemo;
     Button btnAdd;
     ArrayList<String> datalist;
+    NotesDbAdapter dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbHelper = new NotesDbAdapter (this);
+        dbHelper.open();
 
         btnAdd = (Button) findViewById(R.id.button_add);
         btnAdd.setOnClickListener(this);
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setNotifyOnChange(true);
         listMemo = (ListView) findViewById(R.id.list_memo);
         listMemo.setAdapter(adapter);
+
+        refreshList();
     }
 
     @Override
@@ -52,8 +58,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult");
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-                String title = data.getStringExtra("title");
-                datalist.add(title);
+                refreshList();
         }
+    }
+
+    private void refreshList()
+    {
+        datalist.clear();
+        datalist.addAll(dbHelper.getAllNotes());
     }
 }
